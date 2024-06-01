@@ -1,24 +1,19 @@
 services:
-  - type: web
-    name: cc-prediction
-    env: production
-    plan: development
-    envVars:
-      - key: MODEL_NAME
-        fromSecret: modelName
-      - key: MONITORING_CONFIG
-        fromSecret: monitoringConfig
-      - key: PORT
-        value: "8501"
+  - name: cc-prediction
+    env: docker
+    buildCommand: docker build -t mrbhaqee/cc-prediction .
+    startCommand: docker run -p 8501:8501 mrbhaqee/cc-prediction
     healthCheckPath: /v1/models/cc-model
-  # - type: web
-  #   name: cc-monitoring
-  #   env: production
-  #   plan: development
-  #   envVars:
-  #     - key: EXTERNAL_IP
-  #       value: <External IP> # Ganti dengan alamat IP yang sesuai
-  # - type: web
-  #   name: cc-visualization
-  #   env: production
-  #   plan: development
+    internalPort: 8501
+
+  - name: cc-monitoring
+    env: docker
+    buildCommand: docker build -t mrbhaqee/cc-monitoring ./monitoring
+    startCommand: docker run -p 9090:9090 mrbhaqee/cc-monitoring
+    healthCheckPath: /metrics
+
+  - name: cc-visualization
+    env: docker
+    buildCommand: docker build -t mrbhaqee/cc-visualization ./visualization
+    startCommand: docker run -p 3000:3000 mrbhaqee/cc-visualization
+    healthCheckPath: /login
