@@ -2,17 +2,20 @@ services:
   - type: web
     name: cc-prediction
     env: docker
+    plan: free
     buildCommand: docker build -t mrbhaqee/cc-prediction .
     healthCheckPath: /v1/models/cc-model
 
   - type: web
     name: cc-monitoring
     env: docker
+    plan: free
     buildCommand: docker build -t mrbhaqee/cc-monitoring ./monitoring
     healthCheckPath: /metrics
 
   - type: web
     name: cc-visualization
     env: docker
+    plan: free
     buildCommand: docker build -t mrbhaqee/cc-visualization ./visualization
     healthCheckPath: /login

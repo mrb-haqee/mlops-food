@@ -1,9 +1,12 @@
 docker build . -t mrbhaqee/cc-prediction
 
 docker build .\monitoring\ -t mrbhaqee/cc-monitoring
+docker build .\visualization\ -t mrbhaqee/cc-visualization
 
 docker login
 
 docker push mrbhaqee/cc-prediction
 
 docker push mrbhaqee/cc-monitoring
+
+docker push mrbhaqee/cc-visualization
