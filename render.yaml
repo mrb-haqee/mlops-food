@@ -2,7 +2,7 @@ services:
   - type: web
     name: cc-prediction
     env: production
-    plan: free
+    plan: development
     envVars:
       - key: MODEL_NAME
         fromSecret: modelName
@@ -11,14 +11,14 @@ services:
       - key: PORT
         value: "8501"
     healthCheckPath: /v1/models/cc-model
-  - type: web
-    name: cc-monitoring
-    env: production
-    plan: free
-    envVars:
-      - key: EXTERNAL_IP
-        fromService: cc-prediction
-  - type: web
-    name: cc-visualization
-    env: production
-    plan: free
+  # - type: web
+  #   name: cc-monitoring
+  #   env: production
+  #   plan: development
+  #   envVars:
+  #     - key: EXTERNAL_IP
+  #       value: <External IP> # Ganti dengan alamat IP yang sesuai
+  # - type: web
+  #   name: cc-visualization
+  #   env: production
+  #   plan: development
