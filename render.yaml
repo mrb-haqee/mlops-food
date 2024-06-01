@@ -6,7 +6,6 @@ services:
     buildCommand: docker build -t mrbhaqee/cc-prediction .
     startCommand: docker run -p 8501:8501 mrbhaqee/cc-prediction
     healthCheckPath: /v1/models/cc-model
-    internalPort: 8501
 
   - type: web
     name: cc-monitoring
