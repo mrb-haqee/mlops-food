@@ -1,0 +1,23 @@
+version: "3"
+ 
+services:
+  cc-prediction:
+    container_name: ml
+    image: mrbhaqee/cc-prediction
+    restart: always
+    ports:
+      - 8501:8501
+ 
+  cc-monitoring:
+    container_name: prometheus
+    image: mrbhaqee/cc-monitoring
+    restart: always
+    ports:
+      - 9090:9090
+ 
+  cc-visualization:
+    container_name: grafana
+    image: grafana/grafana
+    restart: always
+    ports:
+      - 3000:3000
