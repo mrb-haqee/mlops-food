@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: cc-prediction
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    buildCommand: docker-compose build cc-prediction
+    startCommand: docker-compose up cc-prediction
+    envVars:
+      - key: PORT
+        value: "8501"
+      - key: MODEL_NAME
+        value: "cc-model"
+      - key: MODEL_BASE_PATH
+        value: "/models"
+      - key: MONITORING_CONFIG
+        value: "/model_config/prometheus.config"
+
+  - type: web
+    name: cc-monitoring
+    env: docker
+    dockerfilePath: ./monitoring/Dockerfile
+    plan: free
+    buildCommand: docker-compose build cc-monitoring
+    startCommand: docker-compose up cc-monitoring
+
+  - type: web
+    name: cc-visualization
+    env: docker
+    dockerfilePath: ./visualization/Dockerfile
+    plan: free
+    buildCommand: docker-compose build cc-visualization
+    startCommand: docker-compose up cc-visualization
