@@ -1,5 +1,6 @@
 services:
-  - name: cc-prediction
+  - type: web
+    name: cc-prediction
     env: production
     plan: development
     envVars:
@@ -13,7 +14,8 @@ services:
     ports:
       - number: 8501
         protocol: TCP
-  - name: cc-monitoring
+  - type: web
+    name: cc-monitoring
     env: production
     plan: development
     envVars:
@@ -22,7 +24,8 @@ services:
     ports:
       - number: 9090
         protocol: TCP
-  - name: cc-visualization
+  - type: web
+    name: cc-visualization
     env: production
     plan: development
     ports:
